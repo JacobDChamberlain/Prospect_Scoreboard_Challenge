@@ -36,12 +36,12 @@ A command-line application for tracking and ranking sales prospects based on opp
 Display the top N prospects ranked by score:
 
 ```bash
-node index.js leaderboard --limit <number>
+node app.js leaderboard --limit <number>
 ```
 
 **Example:**
 ```bash
-node index.js leaderboard --limit 3
+node app.js leaderboard --limit 3
 ```
 
 **Output:**
@@ -58,12 +58,12 @@ Rank  Name                    Stage          Score  Reason
 Update a prospect's last touch and increment their quarterly touches:
 
 ```bash
-node index.js nudge <id>
+node app.js nudge <id>
 ```
 
 **Example:**
 ```bash
-node index.js nudge 5
+node app.js nudge 5
 ```
 
 **Output:**
@@ -87,7 +87,7 @@ Updated record:
 Display usage information:
 
 ```bash
-node index.js --help
+node app.js --help
 ```
 
 ## Running Tests
@@ -126,7 +126,7 @@ score = (opportunity_value / 1000) + (touches_this_quarter × 5) - days_since_la
 
 ## Data Persistence
 
-The application uses `sample_prospects.json` as its data store. The `nudge` command modifies this file directly, persisting changes across sessions. The original sample data includes 10 prospects.
+The application uses `data/sample_prospects.json` as its data store. The `nudge` command modifies this file directly, persisting changes across sessions. The original sample data includes 10 prospects.
 
 **Important**: The nudge command will mutate the JSON file. To restore original data, you can restore from version control or manually reset the values.
 
@@ -134,9 +134,15 @@ The application uses `sample_prospects.json` as its data store. The `nudge` comm
 
 ```
 Prospect_Scoreboard_Challenge/
-├── index.js                              # Main application file
-├── index.test.js                         # Test suite
-├── sample_prospects.json                 # Data file (10 prospect records)
+├── data/
+│   └── sample_prospects.json             # Data file (10 prospect records)
+├── lib/
+│   ├── scoring.js                        # Scoring calculation and reason generation
+│   ├── data.js                           # Data loading and persistence
+│   └── commands.js                       # Leaderboard and nudge command logic
+├── tests/
+│   └── lib.test.js                       # Test suite for lib modules
+├── app.js                                # Main CLI entry point
 ├── package.json                          # Node.js dependencies and scripts
 ├── README.md                             # This file
 └── Prospect_Scoreboard_Challenge.md      # Original requirements

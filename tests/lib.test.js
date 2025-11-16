@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { calculateScore, generateReason, loadProspects, saveProspects } = require('./index');
+const { calculateScore, generateReason } = require('../lib/scoring');
+const { loadProspects, saveProspects } = require('../lib/data');
 
 // Mock data for testing
 const mockProspect = {
@@ -198,7 +199,7 @@ describe('Prospect Scoreboard Tests', () => {
 
   describe('saveProspects and nudge functionality', () => {
     let originalData;
-    const testDataFile = path.join(__dirname, 'sample_prospects.json');
+    const testDataFile = path.join(__dirname, '..', 'data', 'sample_prospects.json');
 
     beforeEach(() => {
       // Backup original data
