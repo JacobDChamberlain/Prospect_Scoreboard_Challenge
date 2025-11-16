@@ -269,6 +269,81 @@ describe('Prospect Scoreboard Tests', () => {
     });
   });
 
+  describe('Quarterly logic', () => {
+    let originalData;
+    const testDataFile = path.join(__dirname, '..', 'data', 'sample_prospects.json');
+
+    beforeEach(() => {
+      originalData = fs.readFileSync(testDataFile, 'utf8');
+    });
+
+    afterEach(() => {
+      fs.writeFileSync(testDataFile, originalData, 'utf8');
+    });
+
+    it('should reset touches_this_quarter when nudging in a new quarter', () => {
+      const prospects = loadProspects();
+      const testProspect = prospects.find(p => p.id === 10);
+
+      // Set last_touch to Q1 2024
+      testProspect.last_touch = '2024-01-15T09:10:00Z';
+      testProspect.touches_this_quarter = 5;
+      saveProspects(prospects);
+
+      // Simulate nudging in Q4 2025 (different quarter)
+      const reloadedProspects = loadProspects();
+      const prospect = reloadedProspects.find(p => p.id === 10);
+
+      const now = new Date();  // Nov 2025
+      const lastTouch = new Date(prospect.last_touch);  // Jan 2024
+
+      const sameQuarter =
+        now.getFullYear() === lastTouch.getFullYear() &&
+        Math.floor(now.getMonth() / 3) === Math.floor(lastTouch.getMonth() / 3);
+
+      prospect.last_touch = now.toISOString();
+      prospect.touches_this_quarter = sameQuarter ? prospect.touches_this_quarter + 1 : 1;
+      saveProspects(reloadedProspects);
+
+      // Verify it was reset to 1 (not incremented to 6)
+      const finalProspects = loadProspects();
+      const finalProspect = finalProspects.find(p => p.id === 10);
+      expect(finalProspect.touches_this_quarter).toBe(1);
+    });
+
+    it('should increment touches_this_quarter when nudging in the same quarter', () => {
+      const prospects = loadProspects();
+      const testProspect = prospects.find(p => p.id === 5);
+
+      // Set last_touch to current month (same quarter)
+      const now = new Date();
+      const sameQuarterDate = new Date(now.getFullYear(), now.getMonth(), 1);
+      testProspect.last_touch = sameQuarterDate.toISOString();
+      testProspect.touches_this_quarter = 3;
+      saveProspects(prospects);
+
+      // Simulate nudging in same quarter
+      const reloadedProspects = loadProspects();
+      const prospect = reloadedProspects.find(p => p.id === 5);
+
+      const newNow = new Date();
+      const lastTouch = new Date(prospect.last_touch);
+
+      const sameQuarter =
+        newNow.getFullYear() === lastTouch.getFullYear() &&
+        Math.floor(newNow.getMonth() / 3) === Math.floor(lastTouch.getMonth() / 3);
+
+      prospect.last_touch = newNow.toISOString();
+      prospect.touches_this_quarter = sameQuarter ? prospect.touches_this_quarter + 1 : 1;
+      saveProspects(reloadedProspects);
+
+      // Verify it was incremented to 4 (not reset to 1)
+      const finalProspects = loadProspects();
+      const finalProspect = finalProspects.find(p => p.id === 5);
+      expect(finalProspect.touches_this_quarter).toBe(4);
+    });
+  });
+
   describe('Edge cases and validation', () => {
     it('should handle very old last_touch dates', () => {
       const oldProspect = {

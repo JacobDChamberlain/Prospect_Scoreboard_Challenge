@@ -61,6 +61,8 @@ Update a prospect's last touch and increment their quarterly touches:
 node app.js nudge <id>
 ```
 
+**Note:** The command intelligently handles quarterly logic. If the last touch was in a different quarter, `touches_this_quarter` resets to 1. If in the same quarter, it increments.
+
 **Example:**
 ```bash
 node app.js nudge 5
@@ -172,6 +174,12 @@ The application includes comprehensive error handling:
 - File-based storage is suitable for small datasets (10 prospects)
 - For larger datasets or concurrent access, a database would be recommended
 
+**Quarterly Logic:**
+- The nudge command automatically detects quarter boundaries (Q1-Q4) based on year and month
+- Quarters are calculated as: Q1 (Jan-Mar), Q2 (Apr-Jun), Q3 (Jul-Sep), Q4 (Oct-Dec)
+- When nudging a prospect from a previous quarter, `touches_this_quarter` resets to 1
+- When nudging within the same quarter, `touches_this_quarter` increments normally
+
 ## Development Notes
 
 - Tests use Date mocking to ensure consistent, predictable results
@@ -182,5 +190,5 @@ The application includes comprehensive error handling:
 - What range should sores be within? (ex: 0-100?)
 - Clarify 'recent touch' (ex: within 1 week?)
 - Clarify 'recent touches' (ex: 4+ this quarter?)
-- Do we need to handle quarterly logic? How will the app know we're in a given quarter? Original data was all for 2024, so initial scores will all come back negative until we begin nudging.
 - When viewing leaderboard, do we want only one reason, or all potential reasons? How do we rank reasons?
+- Note: initial scores will all come back negative until we begin nudging, as the original dates are all from 2024.
