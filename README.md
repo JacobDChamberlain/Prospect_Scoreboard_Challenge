@@ -182,5 +182,5 @@ The application includes comprehensive error handling:
 - What range should sores be within? (ex: 0-100?)
 - Clarify 'recent touch' (ex: within 1 week?)
 - Clarify 'recent touches' (ex: 4+ this quarter?)
-- Do we need to handle quarterly logic? How will the app know we're in a given quarter? Original data was all for 2024, so initial scores are all coming back negative.
+- Do we need to handle quarterly logic? How will the app know we're in a given quarter? Original data was all for 2024, so initial scores will all come back negative until we begin nudging.
 - When viewing leaderboard, do we want only one reason, or all potential reasons? How do we rank reasons?
