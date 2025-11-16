@@ -2,9 +2,7 @@
 
 const { leaderboard, nudge } = require('./lib/commands');
 
-/**
- * Display help message
- */
+
 function showHelp() {
   console.log('Prospect Scoreboard Console');
   console.log('');
@@ -21,9 +19,6 @@ function showHelp() {
   console.log('  node app.js nudge 5');
 }
 
-/**
- * Main entry point
- */
 function main() {
   const args = process.argv.slice(2);
 
@@ -66,7 +61,4 @@ function main() {
   }
 }
 
-// Run if executed directly
-if (require.main === module) {
-  main();
-}
+main();
