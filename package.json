@@ -1,0 +1,23 @@
+{
+  "name": "prospect_scoreboard_challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobDChamberlain/Prospect_Scoreboard_Challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JacobDChamberlain/Prospect_Scoreboard_Challenge/issues"
+  },
+  "homepage": "https://github.com/JacobDChamberlain/Prospect_Scoreboard_Challenge#readme",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
