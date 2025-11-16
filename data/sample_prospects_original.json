@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Alto Renew",
+    "stage": "demo",
+    "opportunity_value": 42000,
+    "last_touch": "2024-03-18T15:30:00Z",
+    "touches_this_quarter": 4
+  },
+  {
+    "id": 2,
+    "name": "Beryl Solar",
+    "stage": "prospect",
+    "opportunity_value": 18000,
+    "last_touch": "2024-02-11T10:00:00Z",
+    "touches_this_quarter": 1
+  },
+  {
+    "id": 3,
+    "name": "Cider Labs",
+    "stage": "contract",
+    "opportunity_value": 71000,
+    "last_touch": "2024-03-05T09:45:00Z",
+    "touches_this_quarter": 5
+  },
+  {
+    "id": 4,
+    "name": "Delta Works",
+    "stage": "proposal",
+    "opportunity_value": 35000,
+    "last_touch": "2024-01-28T13:20:00Z",
+    "touches_this_quarter": 0
+  },
+  {
+    "id": 5,
+    "name": "Ember Grid",
+    "stage": "demo",
+    "opportunity_value": 52000,
+    "last_touch": "2024-03-21T08:15:00Z",
+    "touches_this_quarter": 3
+  },
+  {
+    "id": 6,
+    "name": "Frostbyte Solutions",
+    "stage": "discovery",
+    "opportunity_value": 27000,
+    "last_touch": "2024-03-02T11:05:00Z",
+    "touches_this_quarter": 2
+  },
+  {
+    "id": 7,
+    "name": "Grove Capital",
+    "stage": "negotiation",
+    "opportunity_value": 64000,
+    "last_touch": "2024-03-16T14:25:00Z",
+    "touches_this_quarter": 3
+  },
+  {
+    "id": 8,
+    "name": "Harbor Analytics",
+    "stage": "proposal",
+    "opportunity_value": 46000,
+    "last_touch": "2024-02-20T17:40:00Z",
+    "touches_this_quarter": 2
+  },
+  {
+    "id": 9,
+    "name": "Ion Engines",
+    "stage": "demo",
+    "opportunity_value": 39000,
+    "last_touch": "2024-03-10T12:55:00Z",
+    "touches_this_quarter": 4
+  },
+  {
+    "id": 10,
+    "name": "Juniper Materials",
+    "stage": "prospect",
+    "opportunity_value": 25000,
+    "last_touch": "2024-01-15T09:10:00Z",
+    "touches_this_quarter": 1
+  }
+]

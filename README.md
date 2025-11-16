@@ -128,14 +128,16 @@ score = (opportunity_value / 1000) + (touches_this_quarter × 5) - days_since_la
 
 The application uses `data/sample_prospects.json` as its data store. The `nudge` command modifies this file directly, persisting changes across sessions. The original sample data includes 10 prospects.
 
-**Important**: The nudge command will mutate the JSON file. To restore original data, you can restore from version control or manually reset the values.
+**Resetting Data**: The nudge command will mutate the JSON file. To restore the original sample data:
+- Copy `data/sample_prospects_original.json` to `data/sample_prospects.json`
 
 ## Project Structure
 
 ```
 Prospect_Scoreboard_Challenge/
 ├── data/
-│   └── sample_prospects.json             # Data file (10 prospect records)
+│   ├── sample_prospects.json             # Active data file (10 prospect records)
+│   └── sample_prospects_original.json    # Backup of original data
 ├── lib/
 │   ├── scoring.js                        # Scoring calculation and reason generation
 │   ├── data.js                           # Data loading and persistence
@@ -160,8 +162,8 @@ The application includes comprehensive error handling:
 ## Implementation Details
 
 **Technology Choices:**
-- **Runtime**: Node.js (chosen for its robust ecosystem and JSON handling)
-- **Testing**: Jest (industry-standard testing framework)
+- **Runtime**: Node.js (I'm most familiar with Node)
+- **Testing**: Jest (industry-standard testing framework - also, most familiar with Jest)
 - **Persistence**: Direct JSON file mutation (simple, no database needed)
 - **CLI Parsing**: Native `process.argv` (lightweight, no external dependencies)
 
@@ -172,11 +174,13 @@ The application includes comprehensive error handling:
 
 ## Development Notes
 
-- All functions are exported for testing purposes
 - Tests use Date mocking to ensure consistent, predictable results
 - The application restores original data in test cleanup (afterEach hooks)
 - Input validation prevents common errors and provides helpful feedback
 
-## Author
-
-Built as a take-home assessment for the Opportunity Tracker team.
+## Questions
+- What range should sores be within? (ex: 0-100?)
+- Clarify 'recent touch' (ex: within 1 week?)
+- Clarify 'recent touches' (ex: 4+ this quarter?)
+- Do we need to handle quarterly logic? How will the app know we're in a given quarter? Original data was all for 2024, so initial scores are all coming back negative.
+- When viewing leaderboard, do we want only one reason, or all potential reasons? How do we rank reasons?
