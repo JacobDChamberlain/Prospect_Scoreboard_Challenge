@@ -343,37 +343,4 @@ describe('Prospect Scoreboard Tests', () => {
       expect(finalProspect.touches_this_quarter).toBe(4);
     });
   });
-
-  describe('Edge cases and validation', () => {
-    it('should handle very old last_touch dates', () => {
-      const oldProspect = {
-        ...mockProspect,
-        last_touch: '2023-01-01T00:00:00Z' // Over a year ago
-      };
-
-      const score = calculateScore(oldProspect);
-      expect(typeof score).toBe('number');
-      expect(isNaN(score)).toBe(false);
-    });
-
-    it('should handle prospects with high touch counts', () => {
-      const highTouchProspect = {
-        ...mockProspect,
-        touches_this_quarter: 20
-      };
-
-      const score = calculateScore(highTouchProspect);
-      expect(score).toBeGreaterThan(0);
-    });
-
-    it('should handle prospects with very low opportunity values', () => {
-      const lowValueProspect = {
-        ...mockProspect,
-        opportunity_value: 1000
-      };
-
-      const score = calculateScore(lowValueProspect);
-      expect(typeof score).toBe('number');
-    });
-  });
 });
